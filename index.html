@@ -1,184 +1,497 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Kurt Sony - Portfolio</title>
-    <link rel="stylesheet" href="./style.css"/>
-    <script src="./script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Resume</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav>
-      <div id="home">
-        <div class="profile_name">
-          Kurt Sony
-          <div class="contact_info">
-            <img src="Images/mail.png" alt="https://icons8.com/icon/124377/circled-envelope"/>
-          kurtsony@jeemail.com
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg frosted-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#">Portfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#About">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Certifications">Certificates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Technologies">Technologies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Blogs">Blogs</a>
+            </li>
+          </ul>
         </div>
-        <div style="clear:both;"></div>
-        <div class="contact_info">
-          <img src="Images/phone.png" alt="https://icons8.com/icon/124377/circled-envelope"/>
-          +13456764598
-
-        </div>
-        </div>
-        <div class="topdiv">
-          <a class="topmenu" href="#about-me">About Me</a>
-          <a class="topmenu" href="#skills">Skills</a>
-          <a class="topmenu" href="#projects">Projects</a>
-          <a class="topmenu" href="#recommendations">Recommendations</a>
-
-        </div>
-      </div>    
+        <a href="#contact" class="contact-btn">Contact</a>
+      </div>
     </nav>
 
-    <!-- About Me -->
-    <section id="about-me" class="container">
-      <div>
-        <img src="Images/typing.gif" class="profile_image"/>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="video-container">
+        <video autoplay loop muted>
+          <source src="Images/landing-vid.mp4" type="video/mp4" />
+        </video>
       </div>
-
-      <div>
-          <h1>
-            Hi, I'm Kurt Sony! <img src="Images/peace.png" width="60px"/>
-          </h1>
-          <p>
-            I am a college student with a keen interest in full stack development as well as in field of AI and Machine Learning.
-            I have completed numerous projects and loves to explore different languages.
-            I delved into the world of programming and tech at age of 12 when they introduced basics of html at school.
-          </p>
+      <div class="hero-text">
+        <h1>My Name is <span>Kurt Sony</span></h1>
+        <p>Welcome to My Portfolio</p>
+        <p>Showcasing my projects, blogs, and certifications</p>
+        <a href="#" class="btn">Explore More</a>
       </div>
     </section>
-              
-    <!-- Skills -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <div style="clear:both;"></div>
 
-      <div class="all_skills">
-        <div class="skill">
-          <img src="Images/html.png"/>
-          <h6>HTML</h6>
-          <p>4 years experience</p>
-        </div>  
-
-        <div class="skill">
-          <img src="Images/java.png"/>
-          <h6>Java</h6>
-          <p>1 year experience</p>
-        </div>  
-
-        <div class="skill">
-            <img src="Images/javascript.png"/>
-            <h6>Javascript</h6>
-            <p>2 year experience</p>
-        </div>
-
-        <div class="skill">
-            <img src="Images/python.png"/>
-            <h6>Python</h6>
-            <p>5 year experience</p>
-        </div>
-
-        <div class="skill">
-            <img src="Images/mysql.png"/>
-            <h6>MySQL</h6>
-            <p>3 year experience</p>
-        </div>
-
-
-      </div>
-    </section>
-          
-    <!-- Projects -->
-    <section class="projects" id="projects">
-      <h2>
-        Projects
-      </h2>
-      <div style="clear:both;"></div>
-
-        <div id="projects-container" class="projects-container">
-          <div class="project-card">
-            <h3>Bank Managment System</h3>
-            <ul>
-              <li>Developed a secure website using Python and backend database management system in MySQL.</li>
-              <li>Enabled the user to create, delete as well as modify account details.</li>
-              <li>The user was able to withdraw as well as deposit money.</li>
-              <li>Provided a Transaction history for past payments done.</li>
-            </ul>
+    <!-- About Section -->
+    <section class="section about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 id="About">About Me</h2>
+            <p>
+              Passionate and versatile student specializing proficient in
+              multiple programming languages with hands-on experience in web
+              development and advanced AI/ML techniques, including deep learning
+              and neural networks.
+            </p>
+            <p>
+              Demonstrates strong leadership by successfully leading team
+              projects for club activities and serving as a school
+              representative.
+            </p>
+            <p>
+              Excels in both technical problem-solving and effective
+              communication, with a proven ability to deliver impactful
+              presentations and adapt to diverse scenarios.
+            </p>
           </div>
-          <hr>
-          <div class="project-card">
-            <h3>Obstacle Avoiding Car</h3>
-            <ul>
-              <li>Developed an Obstacle avoiding rc car without the help of arduino.</li>
-              <li>Used basic H-bridges and ICs to keep track of the inputs and timing of the circuit.</li>
-              <li>Vehicle on detecting of obstacle would stop and manuer its way around the obstruction.</li>
-            </ul>
+          <div class="about-animation">
+            <img src="Images/about-img.png" alt="About Me" />
+            <div class="animation-placeholder"></div>
           </div>
-          <hr>
-          <div class="project-card">
-            <h3>Merch Website</h3>
-            <ul>
-              <li>Created a styled multi-page website for a new player in the music industry and integrated it with a shopping cart, using stripe for payment gateway</li>
-              <li>Had various interactive elements and provided coupons and discounts for select purchases above an amount</li>
-            </ul>
-          </div>
-    </div>
-    </section>
-    <div style="clear:both;"></div>
-
-    <!-- Recommendations -->
-    <section id="recommendations">
-      <h2>Recommendations</h2>
-      <div style="clear:both;"></div>
-      <div class="all_recommendations" id="all_recommendations">
-        <div class="recommendation">
-          <span>&#8220;</span>
-          Kurt's adept leadership skills and programming prowess in Java, Python, and full-stack development make him an invaluable asset. 
-          Encourage him to pursue leadership development programs for further growth.
-          <span>&#8221;</span>
-        </div>
-        <div class="recommendation">
-          <span>&#8220;</span>
-          With Kurt's strong foundation in programming, suggest exploring advanced courses to deepen expertise and stay updated with emerging technologies.
-          <span>&#8221;</span>
-        </div>
-        <div class="recommendation">
-          <span>&#8220;</span>
-          Kurt's leadership potential and technical proficiency make him an ideal candidate for mentoring junior developers or engaging in knowledge-sharing communities.
-          You can Count on him to take on these roles to foster personal and team growth.
-          <span>&#8221;</span>
         </div>
       </div>
     </section>
 
-    <!-- Recommendation Form -->
-    <section id="contact">
-      <div class="flex_center">
-        <fieldset>
-          <legend class="introduction">Leave a Recommendation</legend>          
-          <input type="text" placeholder="Name (Optional)"> <br/>
-          <textarea id="new_recommendation" cols="500" rows="10" placeholder="Message"></textarea>
-          <div class="flex_center">
-            <button id="recommend_btn" onclick="addRecommendation()">Submit</button>
-          </div>
-        </fieldset>
+    <!-- Projects Section -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 id="Projects">My Projects</h2>
+        <p>A showcase of my recent work.</p>
+        <ul class="projects-list">
+          <li>
+            <strong>E-Commerce Website</strong>
+            <p>
+              Developed a full-featured e-commerce platform similar to Amazon,
+              with authentication using Chowkidar, Strawberry, and Django for
+              the backend. Used Next.js for frontend development and Figma for
+              initial design. Enabled users to perform all essential e-commerce
+              functionalities, including product filtering, search, billing, and
+              checkout. Implemented email notifications for order confirmations
+              and developed an admin page for management.
+            </p>
+            <div class="github-link">
+              <a
+                href="https://github.com/akdswordguy/Team2_DreamTEAM"
+                target="_blank"
+              >
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </li>
+          <li>
+            <strong
+              >Sustainable Fuel Optimization using Machine Learning</strong
+            >
+            <p>
+              Developed a machine learning model to categorize and recommend
+              fuels based on efficiency and sustainability factors. Created
+              equations incorporating land use, octane number, cost of
+              extraction, and other key parameters. Aimed to identify the most
+              balanced fuel option without compromising crucial factors.
+            </p>
+          </li>
+          <li>
+            <strong>Food Delivery Application </strong>
+            <p>
+              Designed a food delivery system with JavaFX for the GUI and MySQL
+              as the database.Integrated Java for backend functionality to
+              ensure seamless order management.
+            </p>
+            <div class="github-link">
+              <a
+                href="https://github.com/x3O8/Food-Delivery-App"
+                target="_blank"
+              >
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </li>
+          <li>
+            <strong>Adaptive Robotic Manipulator Algorithm</strong>
+            <p>
+              Developed an algorithm for robotic manipulators to adapt to
+              obstacles in dynamic environments using MATLAB.Implemented
+              obstacle avoidance, path planning, and object classification to
+              determine proper object placement at destination.
+            </p>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <div class="iconbutton">
-      <a href="#home">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" width="63px">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-      </a>
-    </div>
+    <!-- Certifications Section -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 id="Certifications">Certifications</h2>
+        <p>My professional certifications.</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">Full Stack Developer Certificate</h4>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
 
-    <div class="popup" id="popup" class="flex_center">
-      <img src="Images/tick.png"/>
-      <h3>Thanks for the Recommendation!</h3>
-      <button onclick="showPopup(false)">Ok</button>
-    </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">
+                  Deep Learning in Python using PyTorch
+                </h4>
+                <p class="card-text">Datacamp</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">Developing Large Language Models</h4>
+                <p class="card-text">Datacamp</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">AWS Cloud Practitioner (CLF-C02)</h4>
+                <p class="card-text">Datacamp</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">Machine Learning Onramp</h4>
+                <p class="card-text">MATLAB</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">
+                  Generative AI Learning Path - Coursera
+                </h4>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 id="Technologies">Technologies</h2>
+        <p>Technologies I Have Experience Working With</p>
+        <div class="technologies-grid">
+          <h3>Languages</h3>
+
+          <div class="technology-item">
+            <img src="Images/cpp.png" alt="C++ Logo" class="technology-icon" />
+            <h5>C++</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/java.png"
+              alt="Java Logo"
+              class="technology-icon"
+            />
+            <h5>Java</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/python.png"
+              alt="Python Logo"
+              class="technology-icon"
+            />
+            <h5>Python</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/html.jpg"
+              alt="HTML Logo"
+              class="technology-icon"
+            />
+            <h5>HTML</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/javascript.webp"
+              alt="JavaScript Logo"
+              class="technology-icon"
+            />
+            <h5>JavaScript</h5>
+          </div>
+          <h3>Frameworks & Tools</h3>
+
+          <div class="technology-item">
+            <img
+              src="Images/react.webp"
+              alt="React Logo"
+              class="technology-icon"
+            />
+            <h5>React</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/next.png"
+              alt="Next.js Logo"
+              class="technology-icon"
+            />
+            <h5>Next.js</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/pytorch.png"
+              alt="PyTorch Logo"
+              class="technology-icon"
+            />
+            <h5>PyTorch</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/NumPy.webp"
+              alt="NumPy Logo"
+              class="technology-icon"
+            />
+            <h5>NumPy</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/node.png"
+              alt="Node.js Logo"
+              class="technology-icon"
+            />
+            <h5>Node.js</h5>
+          </div>
+          <h3>Databases</h3>
+
+          <div class="technology-item">
+            <img
+              src="Images/mysql.png"
+              alt="MySQL Logo"
+              class="technology-icon"
+            />
+            <h5>MySQL</h5>
+          </div>
+
+          <div class="technology-item">
+            <img
+              src="Images/postgres.png"
+              alt="PostgreSQL Logo"
+              class="technology-icon"
+            />
+            <h5>PostgreSQL</h5>
+          </div>
+          <h3>Cloud & DevOps</h3>
+
+          <div class="technology-item">
+            <img src="Images/aws.jpg" alt="AWS Logo" class="technology-icon" />
+            <h5>AWS</h5>
+          </div>
+
+          <div class="technology-item">
+            <img src="Images/git.png" alt="Git Logo" class="technology-icon" />
+            <h5>Git</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section class="section">
+      <div class="container">
+        <h2 id="Blogs">My Blogs</h2>
+        <p>Explore my latest articles on web development, UI/UX, and more.</p>
+        <div class="blogs-container">
+          <div class="card-grid">
+            <div class="card">
+              <div class="blog-content">
+                <h3>
+                  Analysis of Linux as an Open-Source Project & Contributing
+                  Effectively
+                </h3>
+                <p>
+                  Explore Linux’s contribution guidelines, licensing,
+                  documentation structure, and community engagement,
+                  highlighting actionable insights for your open-source
+                  endeavors.
+                </p>
+              </div>
+              <img
+                src="Images/tux.png"
+                alt="Linux Open-Source"
+                class="blog-image"
+              />
+            </div>
+
+            <div class="card">
+              <div class="blog-content">
+                <h3>Complete Guide on Git Exercises</h3>
+                <p>
+                  While many are familiar with commands like add, commit, and
+                  merge, Git offers far more advanced capabilities. Let’s dive
+                  into practical Git exercises from Git Exercises to uncover its
+                  potential.
+                </p>
+              </div>
+              <img
+                src="Images/git.png"
+                alt="Git Exercises"
+                class="blog-image"
+              />
+            </div>
+
+            <div class="card">
+              <div class="blog-content">
+                <h3>Bandit — Over The Wire Lvl 0–20</h3>
+                <p>
+                  The war games offered by OverTheWire community can help you to
+                  learn and practice security concepts in the form of fun-filled
+                  games.
+                </p>
+              </div>
+              <img
+                src="Images/over-the-wire.png"
+                alt="OverTheWire Bandit"
+                class="blog-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container text-center">
+        <h2>Contact Me</h2>
+        <p>Send me a message and I'll get back to you.</p>
+        <form>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Your Email"
+            required
+          />
+          <textarea
+            class="form-control"
+            rows="4"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-outline-light">
+            Send Message
+          </button>
+        </form>
+
+        <!-- Social Media Links -->
+        <div class="social-links mt-4">
+          <h3>Connect with me:</h3>
+          <div class="d-flex justify-content-center gap-3">
+            <a
+              href="https://github.com/Oracledelphio"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/kurt-sony-rebello-7329a732a/"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+
+            <a href="mailto:kurtsony16@gmail.com" class="social-icon">
+              <i class="fas fa-envelope fa-2x"></i>
+            </a>
+
+            <a
+              href="https://www.instagram.com/your-instagram-username"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram fa-2x"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS and Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
