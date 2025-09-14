@@ -127,25 +127,22 @@ export default function ContactSection() {
                   onClick={() =>
                     window.open("mailto:kurtsonyrebello@gmail.com")
                   }
-                  className="w-full glass glass-hover text-white py-6 text-lg font-semibold rounded-xl"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(147, 197, 167, 0.2), rgba(107, 142, 90, 0.2))",
-                  }}
+                  color="green"
+                  className="flex items-center w-full min-w-[200px] px-10 py-4 gap-3"
                 >
-                  <Mail className="w-5 h-5 mr-3" />
-                  Send Email
+                  <Mail className="w-5 h-5" />
+                  <span className="font-semibold text-base">Send Email</span>
                 </Button>
 
                 <Button
                   onClick={() =>
                     window.open("https://github.com/Oracledelphio", "_blank")
                   }
-                  variant="outline"
-                  className="w-full glass glass-hover text-white py-6 text-lg font-semibold rounded-xl border-gray-500/30"
+                  color="blue"
+                  className="flex items-center w-full min-w-[200px] px-10 py-4 gap-3"
                 >
-                  <Github className="w-5 h-5 mr-3" />
-                  View GitHub
+                  <Github className="w-5 h-5" />
+                  <span className="font-semibold text-base">View GitHub</span>
                 </Button>
               </div>
             </motion.div>
