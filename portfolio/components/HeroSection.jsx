@@ -110,19 +110,20 @@ export default function HeroSection() {
           >
             <Button
               onClick={scrollToProjects}
-              className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
+              color="green"
+              className="flex items-center min-w-[220px] px-10 py-3 gap-3"
             >
-              View Projects
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
+              <span className="font-semibold text-base">View Projects</span>
             </Button>
 
             <Button
               onClick={scrollToContact}
-              variant="outline"
-              className="px-8 py-4 border-2 border-emerald-400/50 text-emerald-400 hover:bg-emerald-400/10 font-semibold rounded-xl transition-all duration-300"
+              color="green"
+              className="flex items-center min-w-[220px] px-10 py-3 gap-3"
             >
-              <Mail className="w-5 h-5 mr-2" />
-              Let's Collaborate
+              <Mail className="w-5 h-5" />
+              <span className="font-semibold text-base">Let's Collaborate</span>
             </Button>
           </motion.div>
         </motion.div>
@@ -146,7 +147,7 @@ export default function HeroSection() {
             }}
             className="relative z-20"
           >
-            <div className="w-96 h-96 rounded-full glass p-4 relative overflow-hidden group">
+            <div className="w-96 h-96 rounded-full p-4 relative overflow-hidden group">
               {/* Rotating Border */}
               <motion.div
                 animate={{ rotate: 360 }}
