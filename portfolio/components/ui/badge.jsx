@@ -1,19 +1,16 @@
 import React from "react";
 
-export function Badge({ children, color = "green", className = "", ...props }) {
-  // Supported colors: green, blue, yellow, red
-  const colorClass =
-    {
-      green: "badge-green",
-      blue: "badge-blue",
-      yellow: "badge-yellow",
-      red: "badge-red",
-    }[color] || "badge-green";
-
+export function Badge({ children, ...props }) {
   return (
     <span
       {...props}
-      className={`badge-glass ${colorClass} ${className}`.trim()}
+      style={{
+        padding: "4px 8px",
+        borderRadius: "12px",
+        background: "#eee",
+        color: "#333",
+        fontSize: "12px",
+      }}
     >
       {children}
     </span>

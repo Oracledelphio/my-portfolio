@@ -115,8 +115,8 @@ export default function ProjectNotification({
           <div className="flex gap-3 pt-2">
             {project.demo_url && (
               <Button
-                color="green"
-                className="flex items-center min-w-[140px] px-7 py-2 gap-2 flex-1"
+                size="sm"
+                className="glass glass-hover text-white border-pistachio-400/30 flex-1"
                 asChild
               >
                 <a
@@ -124,16 +124,17 @@ export default function ProjectNotification({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="w-5 h-5" />
-                  <span className="font-semibold text-base">Demo</span>
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Demo
                 </a>
               </Button>
             )}
 
             {project.github_url && (
               <Button
-                color="blue"
-                className="flex items-center min-w-[140px] px-7 py-2 gap-2 flex-1"
+                size="sm"
+                variant="outline"
+                className="glass glass-hover text-white border-gray-500/30 flex-1"
                 asChild
               >
                 <a
@@ -141,8 +142,8 @@ export default function ProjectNotification({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github className="w-5 h-5" />
-                  <span className="font-semibold text-base">Code</span>
+                  <Github className="w-4 h-4 mr-2" />
+                  Code
                 </a>
               </Button>
             )}

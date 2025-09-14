@@ -1,24 +1,17 @@
 import React from "react";
 
-export function Button({
-  children,
-  color = "green",
-  className = "",
-  ...props
-}) {
-  // Supported colors: green, blue, yellow, red
-  const colorClass =
-    {
-      green: "button-green",
-      blue: "button-blue",
-      yellow: "button-yellow",
-      red: "button-red",
-    }[color] || "button-green";
-
+export function Button({ children, ...props }) {
+  const { asChild, ...rest } = props;
   return (
     <button
-      {...props}
-      className={`button-glass ${colorClass} ${className}`.trim()}
+      {...rest}
+      style={{
+        padding: "8px 16px",
+        borderRadius: "4px",
+        border: "1px solid #ccc",
+        background: "#fff",
+        cursor: "pointer",
+      }}
     >
       {children}
     </button>

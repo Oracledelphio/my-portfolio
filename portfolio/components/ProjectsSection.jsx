@@ -123,24 +123,21 @@ export default function ProjectsSection() {
                           <div className="flex gap-4">
                             {project.demo_url && (
                               <Button
-                                color="green"
-                                className="flex items-center min-w-[180px] px-8 py-3 gap-3"
+                                size="lg"
+                                className="bg-emerald-500 hover:bg-emerald-600 text-white"
                               >
-                                <ExternalLink className="w-5 h-5" />
-                                <span className="font-semibold text-base">
-                                  Demo
-                                </span>
+                                <ExternalLink className="w-4 h-4 mr-2" />
+                                Demo
                               </Button>
                             )}
                             {project.github_url && (
                               <Button
-                                color="blue"
-                                className="flex items-center min-w-[180px] px-8 py-3 gap-3"
+                                size="lg"
+                                variant="outline"
+                                className="border-gray-500 text-gray-300"
                               >
-                                <Github className="w-5 h-5" />
-                                <span className="font-semibold text-base">
-                                  Code
-                                </span>
+                                <Github className="w-4 h-4 mr-2" />
+                                Code
                               </Button>
                             )}
                           </div>
