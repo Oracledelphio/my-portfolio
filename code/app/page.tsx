@@ -29,7 +29,20 @@ export default function Home() {
   }, []);
 
   if (loading && SHOW_LOADING) {
-    return <LoadingScreen onComplete={() => setLoading(false)} />;
+    return (
+      <LoadingScreen
+        onComplete={() => {
+          setLoading(false);
+          // ensure Hero is visible after loading
+          setTimeout(() => {
+            // scroll to the hero section (fallback to top)
+            const el = document.getElementById("hero");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+            else window.scrollTo({ top: 0, behavior: "smooth" });
+          }, 80);
+        }}
+      />
+    );
   }
 
   return (

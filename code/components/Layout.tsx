@@ -91,7 +91,7 @@ export default function Layout({
             className="text-xl lg:text-2xl font-bold text-[#5A4036] hover:opacity-70 transition-opacity tracking-tight"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            KURT SONY
+            KURT SONY REBELLO
           </button>
 
           {/* Desktop Navigation */}
