@@ -68,15 +68,15 @@ export default function Hero() {
       lastPosition.current = { x: e.clientX, y: e.clientY };
       lastMoveTime.current = currentTime;
 
-      // Velocity-based spawning
+      // Velocity-based spawning - faster spawn rate
       // Higher velocity = more frequent spawns
-      const spawnThreshold = 0.3; // Adjust sensitivity
+      const spawnThreshold = 0.2; // Lower threshold for faster spawning
 
       if (velocity > spawnThreshold) {
         spawnCounter.current += velocity;
 
-        // Spawn image when counter exceeds threshold
-        if (spawnCounter.current > 2) {
+        // Spawn image when counter exceeds threshold - lower threshold
+        if (spawnCounter.current > 0.8) {
           spawnCounter.current = 0;
           spawnImage(e.clientX, e.clientY, velocity);
         }
@@ -103,8 +103,10 @@ export default function Hero() {
 
       const randomRotation = (Math.random() - 0.5) * 30; // -15 to 15 degrees
 
-      // Lifetime tied to size so larger images linger a bit longer
-      const lifetime = 2200 + Math.round(Math.random() * 1000); // 2200 - 3200ms
+      // Longer visible duration, then subtle quick fade (0.3s)
+      const visibleDuration = 1500 + Math.round(Math.random() * 800); // 1500 - 2300ms visible
+      const fadeDuration = 300; // 0.3s subtle fade-out
+      const lifetime = visibleDuration + fadeDuration;
 
       const newElement = {
         id,
@@ -115,6 +117,8 @@ export default function Hero() {
         width,
         height,
         lifetime,
+        visibleDuration,
+        fadeDuration,
       };
 
       setTrailElements((prev) => [...prev, newElement]);
@@ -167,6 +171,8 @@ export default function Hero() {
               top: `${element.y}px`,
               // expose rotation to CSS animation via custom property
               ["--rotation" as any]: `${element.rotation}deg`,
+              ["--visible-duration" as any]: `${element.visibleDuration}ms`,
+              ["--fade-duration" as any]: `${element.fadeDuration}ms`,
               transform: `translate(-50%, -50%) rotate(${element.rotation}deg)`,
               animation: `trailFade ${element.lifetime}ms ease-out forwards`,
               willChange: "transform, opacity",
@@ -209,20 +215,20 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* CSS Animation for trail fade */}
+      {/* CSS Animation for trail fade - long visible, quick fade */}
       <style jsx>{`
         @keyframes trailFade {
           0% {
-            opacity: 0;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(0.8);
-          }
-          20% {
             opacity: 1;
+            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+          }
+          calc((var(--visible-duration) / (var(--visible-duration) + var(--fade-duration))) * 100%) {
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
           }
           100% {
             opacity: 0;
-            transform: translate(-50%, -50%)
-              rotate(calc(var(--rotation) + 10deg)) scale(1.1);
+            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
           }
         }
       `}</style>
