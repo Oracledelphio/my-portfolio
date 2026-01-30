@@ -1,0 +1,237 @@
+/* ========================================
+   CINEMATIC GALLERY - RESPONSIVE FOUNDATION
+   ======================================== */
+
+:root {
+  --index: calc(1vw + 1vh);
+  --panel-width: calc(var(--index) * 8);
+  --panel-height: calc(var(--index) * 28);
+  --panel-gap: calc(var(--index) * 0.8);
+  --perspective: calc(var(--index) * 150);
+  
+  /* Depth levels for wave propagation */
+  --depth-focus: calc(var(--index) * 8);
+  --depth-neighbor-1: calc(var(--index) * 5);
+  --depth-neighbor-2: calc(var(--index) * 3);
+  --depth-neighbor-3: calc(var(--index) * 1.5);
+  --depth-neighbor-4: calc(var(--index) * 0.5);
+  
+  /* Expansion dimensions */
+  --panel-expanded-width: calc(var(--index) * 40);
+  --panel-compressed-width: calc(var(--index) * 3);
+  
+  /* Motion */
+  --transition-duration: 500ms;
+  --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========================================
+   WRAPPER & CONTAINER
+   ======================================== */
+
+.gallery-wrapper {
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-container {
+  display: flex;
+  gap: var(--panel-gap);
+  perspective: var(--perspective);
+  transform-style: preserve-3d;
+  padding: calc(var(--index) * 2);
+}
+
+/* ========================================
+   PANEL - BASE STATE (IDLE / DORMANT)
+   ======================================== */
+
+.gallery-panel {
+  position: relative;
+  width: var(--panel-width);
+  height: var(--panel-height);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: all var(--transition-duration) var(--transition-easing);
+  will-change: transform, filter;
+  flex-shrink: 0;
+  
+  /* GPU acceleration hints */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  /* Idle state: grayscale and subdued */
+  filter: grayscale(100%) brightness(0.6);
+  transform: translateZ(0);
+}
+
+.panel-image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--index) * 0.4);
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.panel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.panel-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: calc(var(--index) * 2);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+  opacity: 0;
+  transform: translateY(calc(var(--index) * 2));
+  transition: opacity var(--transition-duration) var(--transition-easing),
+              transform var(--transition-duration) var(--transition-easing);
+  will-change: opacity, transform;
+  color: white;
+}
+
+.panel-title {
+  font-size: calc(var(--index) * 1.8);
+  margin: 0 0 calc(var(--index) * 0.3) 0;
+  letter-spacing: 0.02em;
+  font-weight: 900;
+}
+
+.panel-subtitle {
+  font-size: calc(var(--index) * 0.9);
+  margin: 0 0 calc(var(--index) * 0.8) 0;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.panel-description {
+  font-size: calc(var(--index) * 1);
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ========================================
+   HOVER WAVE - FOCAL POINT
+   ======================================== */
+
+.gallery-panel:hover {
+  filter: grayscale(0%) brightness(1);
+  transform: translateZ(var(--depth-focus));
+}
+
+/* ========================================
+   HOVER WAVE - RIGHT PROPAGATION (using ~ sibling selector)
+   ======================================== */
+
+/* All following siblings get some effect, then we override with specificity */
+.gallery-panel:hover ~ .gallery-panel {
+  filter: grayscale(90%) brightness(0.6);
+  transform: translateZ(var(--depth-neighbor-4));
+}
+
+/* First immediate neighbor */
+.gallery-panel:hover + .gallery-panel {
+  filter: grayscale(20%) brightness(0.85);
+  transform: translateZ(var(--depth-neighbor-1));
+}
+
+/* Second neighbor */
+.gallery-panel:hover + .gallery-panel + .gallery-panel {
+  filter: grayscale(50%) brightness(0.75);
+  transform: translateZ(var(--depth-neighbor-2));
+}
+
+/* Third neighbor */
+.gallery-panel:hover + .gallery-panel + .gallery-panel + .gallery-panel {
+  filter: grayscale(75%) brightness(0.65);
+  transform: translateZ(var(--depth-neighbor-3));
+}
+
+/* Fourth neighbor (already set by base rule) */
+.gallery-panel:hover + .gallery-panel + .gallery-panel + .gallery-panel + .gallery-panel {
+  filter: grayscale(90%) brightness(0.6);
+  transform: translateZ(var(--depth-neighbor-4));
+}
+
+/* ========================================
+   HOVER WAVE - LEFT PROPAGATION (using :has() selector)
+   ======================================== */
+
+/* First neighbor to the left (immediate previous) */
+.gallery-panel:has(+ .gallery-panel:hover) {
+  filter: grayscale(20%) brightness(0.85);
+  transform: translateZ(var(--depth-neighbor-1));
+}
+
+/* Second neighbor to the left */
+.gallery-panel:has(+ .gallery-panel + .gallery-panel:hover) {
+  filter: grayscale(50%) brightness(0.75);
+  transform: translateZ(var(--depth-neighbor-2));
+}
+
+/* Third neighbor to the left */
+.gallery-panel:has(+ .gallery-panel + .gallery-panel + .gallery-panel:hover) {
+  filter: grayscale(75%) brightness(0.65);
+  transform: translateZ(var(--depth-neighbor-3));
+}
+
+/* Fourth neighbor to the left */
+.gallery-panel:has(+ .gallery-panel + .gallery-panel + .gallery-panel + .gallery-panel:hover) {
+  filter: grayscale(90%) brightness(0.6);
+  transform: translateZ(var(--depth-neighbor-4));
+}
+
+/* ========================================
+   CLICK INTERACTION - EXPANSION
+   ======================================== */
+
+.gallery-panel.selected {
+  width: var(--panel-expanded-width);
+  filter: grayscale(0%) brightness(1);
+  transform: translateZ(calc(var(--depth-focus) * 1.5));
+  z-index: 10;
+}
+
+.gallery-panel.selected .panel-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   CLICK INTERACTION - COMPRESSION
+   ======================================== */
+
+.gallery-panel.compressed {
+  width: var(--panel-compressed-width);
+  filter: grayscale(100%) brightness(0.5);
+  transform: translateZ(calc(var(--index) * -2));
+}
+
+.gallery-panel.compressed .panel-details {
+  opacity: 0;
+}
+
+/* Override hover effects when a panel is selected */
+.gallery-container:has(.gallery-panel.selected) .gallery-panel:not(.selected):hover {
+  filter: grayscale(80%) brightness(0.6);
+  transform: translateZ(var(--depth-neighbor-2));
+}

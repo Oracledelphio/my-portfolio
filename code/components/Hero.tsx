@@ -3,11 +3,11 @@ import { gsap } from "gsap";
 
 // Sample images with varying aspect ratios for cursor trail
 const trailImages = [
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=350&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=300&h=350&fit=crop",
+  "https://images.unsplash.com/photo-1731121594258-55d6a67e77df?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1693773590384-c51562c47b86?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1609583296986-ecb2a397adfd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1677022725616-91e41d36db21?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1642665358815-310df20dc8dd?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
 const hiddenMessage = "INNOVATION • CREATIVITY • EXCELLENCE";
@@ -97,9 +97,9 @@ export default function Hero() {
       const ratio = ratios[Math.floor(Math.random() * ratios.length)];
 
       // Base width varies with velocity (faster movement -> slightly bigger spawn)
-      const baseWidth = 120 + Math.min(220, Math.round(velocity * 120)); // 120 - 340 px
-      const width = Math.round(baseWidth + (Math.random() - 0.5) * 60);
-      const height = Math.max(60, Math.round(width / ratio));
+      const baseWidth = 60 + Math.min(100, Math.round(velocity * 80)); // 60 - 160 px
+      const width = Math.round(baseWidth + (Math.random() - 0.5) * 30);
+      const height = Math.max(30, Math.round(width / ratio));
 
       const randomRotation = (Math.random() - 0.5) * 30; // -15 to 15 degrees
 
