@@ -65,27 +65,25 @@ export default function Projects() {
     setSelectedId(selectedId === id ? null : id);
   };
 
-  const selectedProject = projectPanels.find((p) => p.id === selectedId);
-
   return (
     <section
       id="projects"
-      className="relative py-32 px-6 lg:px-12 overflow-hidden bg-white"
+      className="relative py-12 px-6 lg:px-12 overflow-hidden bg-white"
     >
       <div className="max-w-[1600px] mx-auto relative z-10">
         {/* Section Title */}
-        <div className="mb-12 text-center">
-          <h2 className="text-5xl lg:text-7xl font-black text-[#5A4036] mb-6">
+        <div className="mb-4 text-center">
+          <h2
+            className="text-5xl lg:text-7xl font-bold text-[#5A4036] mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
             PROJECTS
           </h2>
           <div className="w-32 h-2 bg-[#F2A6A6] rounded-full mx-auto" />
         </div>
 
         {/* Gallery Carousel */}
-        <div
-          className="gallery-wrapper"
-          style={{ height: "auto", minHeight: "600px", paddingBottom: "60px" }}
-        >
+        <div className="gallery-wrapper">
           <div className="gallery-container">
             {projectPanels.map((panel) => (
               <div
@@ -113,38 +111,6 @@ export default function Projects() {
             ))}
           </div>
         </div>
-
-        {/* Project Details Panel */}
-        {selectedProject && (
-          <div className="mt-12 bg-[#F6EFE8] rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
-            <h3 className="text-3xl lg:text-4xl font-black text-[#5A4036] mb-4">
-              {selectedProject.title}
-            </h3>
-            <p className="text-sm font-mono text-[#5A4036]/60 mb-4">
-              {selectedProject.period}
-            </p>
-            <p className="text-lg text-[#5A4036]/80 leading-relaxed mb-6">
-              {selectedProject.description}
-            </p>
-
-            {/* Tech Stack */}
-            <div>
-              <h4 className="text-sm font-bold text-[#5A4036] uppercase tracking-wider mb-3">
-                Technologies Used
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedProject.tech.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-white text-[#5A4036] text-sm font-semibold rounded-lg border border-[#8B6D5C]/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
