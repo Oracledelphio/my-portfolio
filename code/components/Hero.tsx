@@ -1,41 +1,6 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-
-// Programming keywords and binary codes for matrix effect
-const matrixChars = "01";
-const programmingKeywords = [
-  "const",
-  "let",
-  "var",
-  "function",
-  "class",
-  "async",
-  "await",
-  "return",
-  "import",
-  "export",
-  "interface",
-  "type",
-  "extends",
-  "implements",
-  "null",
-  "undefined",
-  "true",
-  "false",
-  "for",
-  "while",
-  "if",
-  "else",
-  "try",
-  "catch",
-  "throw",
-  "new",
-  "this",
-  "super",
-  "static",
-  "public",
-  "private",
-];
 
 const hiddenMessage = "INNOVATION • CREATIVITY • EXCELLENCE";
 
@@ -43,15 +8,15 @@ export default function Hero() {
   const heroRef = useRef(null);
   const imageRef = useRef(null);
   const overlayRef = useRef(null);
-  const matrixContainerRef = useRef(null);
+  const rippleContainerRef = useRef(null);
   const messageRef = useRef(null);
 
-  const [matrixElements, setMatrixElements] = useState<any[]>([]);
+  const [ripples, setRipples] = useState<any[]>([]);
   const [messageOpacity, setMessageOpacity] = useState(0);
 
   const lastMoveTime = useRef(0);
   const lastPosition = useRef({ x: 0, y: 0 });
-  const elementCounter = useRef(0);
+  const rippleCounter = useRef(0);
 
   useEffect(() => {
     // GSAP Timeline for Hero Load Animation
@@ -80,29 +45,12 @@ export default function Hero() {
   useEffect(() => {
     let rafId;
 
-    // Generate random binary or keyword
-    const generateMatrixText = () => {
-      if (Math.random() > 0.4) {
-        // 60% chance of binary code
-        let binary = "";
-        for (let i = 0; i < Math.floor(Math.random() * 8) + 4; i++) {
-          binary += matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        }
-        return binary;
-      } else {
-        // 40% chance of programming keyword
-        return programmingKeywords[
-          Math.floor(Math.random() * programmingKeywords.length)
-        ];
-      }
-    };
-
     // Cursor movement handler
     const handleMouseMove = (e) => {
       const currentTime = Date.now();
       const deltaTime = currentTime - lastMoveTime.current;
 
-      if (deltaTime < 16) return; // Throttle to ~60fps
+      if (deltaTime < 120) return; // Throttle ripple spawn to every 120ms for smoother feel
 
       const deltaX = e.clientX - lastPosition.current.x;
       const deltaY = e.clientY - lastPosition.current.y;
@@ -111,11 +59,9 @@ export default function Hero() {
       lastPosition.current = { x: e.clientX, y: e.clientY };
       lastMoveTime.current = currentTime;
 
-      // Spawn matrix elements on cursor movement
-      if (velocity > 0.1) {
-        for (let i = 0; i < Math.max(1, Math.floor(velocity)); i++) {
-          spawnMatrixElement(e.clientX, e.clientY);
-        }
+      // Spawn ripple on cursor movement with higher velocity threshold
+      if (velocity > 0.3) {
+        spawnRipple(e.clientX, e.clientY, velocity);
       }
 
       // Gradually reveal hidden message
@@ -123,33 +69,26 @@ export default function Hero() {
       setMessageOpacity(newOpacity);
     };
 
-    const spawnMatrixElement = (x, y) => {
-      elementCounter.current++;
-      const id = `matrix-${Date.now()}-${elementCounter.current}`;
-      const text = generateMatrixText();
-      const duration = 2000 + Math.random() * 1500; // 2 - 3.5s
+    const spawnRipple = (x, y, velocity) => {
+      rippleCounter.current++;
+      const id = `ripple-${Date.now()}-${rippleCounter.current}`;
+      const duration = 1800 + Math.random() * 400; // Ripple duration 1.8-2.2s for smooth flow
+      const delay = Math.random() * 50; // Slight random delay for organic feel
 
-      const colorOptions = ["#1a1a1a", "#00C853"];
-      const randomColor =
-        colorOptions[Math.floor(Math.random() * colorOptions.length)];
-
-      const newElement = {
+      const newRipple = {
         id,
-        text,
-        x: x + (Math.random() - 0.5) * 80,
-        y: y + (Math.random() - 0.5) * 60,
+        x,
+        y,
         duration,
-        delay: Math.random() * 150,
-        color: randomColor,
-        fontSize: 16 + Math.random() * 10,
+        delay,
       };
 
-      setMatrixElements((prev) => [...prev, newElement]);
+      setRipples((prev) => [...prev, newRipple]);
 
       // Remove after animation
       setTimeout(() => {
-        setMatrixElements((prev) => prev.filter((el) => el.id !== id));
-      }, duration + 200);
+        setRipples((prev) => prev.filter((el) => el.id !== id));
+      }, duration);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -161,7 +100,11 @@ export default function Hero() {
   }, [messageOpacity]);
 
   return (
-    <section ref={heroRef} className="relative w-full h-screen overflow-hidden">
+    <section
+      id="hero"
+      ref={heroRef}
+      className="relative w-full h-screen overflow-hidden"
+    >
       {/* Full-width Hero Image */}
       <div
         ref={imageRef}
@@ -180,29 +123,37 @@ export default function Hero() {
         />
       </div>
 
-      {/* Matrix Code Trail Container */}
+      {/* Water Ripples Container */}
       <div
-        ref={matrixContainerRef}
-        className="absolute inset-0 pointer-events-none z-10 overflow-hidden"
+        ref={rippleContainerRef}
+        className="absolute inset-0 pointer-events-none z-20 overflow-hidden"
       >
-        {matrixElements.map((element) => (
+        {ripples.map((ripple) => (
           <div
-            key={element.id}
-            className="absolute font-mono font-bold"
+            key={ripple.id}
+            className="absolute"
             style={{
-              left: `${element.x}px`,
-              top: `${element.y}px`,
-              color: element.color,
-              fontSize: `${element.fontSize}px`,
-              textShadow: `0 0 8px ${element.color}80, 0 0 16px ${element.color}40`,
-              animation: `matrixFall ${element.duration}ms ease-in forwards`,
-              animationDelay: `${element.delay}ms`,
+              left: `${ripple.x}px`,
+              top: `${ripple.y}px`,
+              transform: "translate(-50%, -50%)",
+              animation: `waterRipple ${ripple.duration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`,
+              animationDelay: `${ripple.delay}ms`,
               willChange: "transform, opacity",
-              letterSpacing: "1px",
-              fontWeight: "600",
             }}
           >
-            {element.text}
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: "6px",
+                height: "6px",
+                transform: "translate(-50%, -50%)",
+                background:
+                  "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 30%, rgba(200,220,255,0.1) 60%, rgba(255,255,255,0) 100%)",
+                boxShadow:
+                  "0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(200, 220, 255, 0.2), inset -1px -1px 3px rgba(0, 0, 0, 0.05)",
+                filter: "blur(0.5px)",
+              }}
+            />
           </div>
         ))}
       </div>
@@ -210,7 +161,7 @@ export default function Hero() {
       {/* Hidden Message Reveal */}
       <div
         ref={messageRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-30"
         style={{
           opacity: messageOpacity,
           transition: "opacity 0.3s ease-out",
@@ -230,19 +181,22 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* CSS Animation for matrix fall effect */}
+      {/* CSS Animation for water ripple effect */}
       <style jsx>{`
-        @keyframes matrixFall {
+        @keyframes waterRipple {
           0% {
-            opacity: 1;
-            transform: translate(-50%, -50%) translateY(0);
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.9;
           }
-          70% {
-            opacity: 1;
+          15% {
+            opacity: 0.9;
+          }
+          40% {
+            opacity: 0.6;
           }
           100% {
+            transform: translate(-50%, -50%) scale(80);
             opacity: 0;
-            transform: translate(-50%, -50%) translateY(80px);
           }
         }
       `}</style>
