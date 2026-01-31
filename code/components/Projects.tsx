@@ -14,8 +14,7 @@ interface ProjectPanel {
 const projectPanels: ProjectPanel[] = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
+    image: "/images/malampatti_bg.png",
     title: "Mallampati Classification",
     subtitle: "Medical AI - May 2025 - Aug 2025",
     description:
@@ -36,8 +35,7 @@ const projectPanels: ProjectPanel[] = [
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+    image: "/images/ecommerce_bg.png",
     title: "E-Commerce Platform",
     subtitle: "Web Development - Sep 2024 - Nov 2024",
     description:
@@ -47,14 +45,34 @@ const projectPanels: ProjectPanel[] = [
   },
   {
     id: 4,
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    image: "/images/traboda_bg.webp",
     title: "Traboda Platform",
     subtitle: "Web Optimization - Apr 2025 - Present",
     description:
       "Enhanced scalable web architectures by implementing performance optimizations that reduced page load times by 35% and expanded user base by 22%, attracting 12,000+ new users through improved platform accessibility.",
     period: "Apr 2025 - Present",
     tech: ["React", "Next.js", "Performance", "Scalability"],
+  },
+  {
+    id: 5,
+    image:
+      "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&h=600&fit=crop",
+    title: "Big Data Retail Market Analysis & Prediction",
+    subtitle: "Big Data Analytics - Sep 2025 - Dec 2025",
+    description:
+      "Built an end-to-end scalable retail analytics pipeline using Apache Spark and Hadoop to derive business insights from 4GB+ transactional data. Implemented customer segmentation (K-Means), churn prediction (Random Forest), personalized recommendations (ALS), and market basket analysis (FP-Growth). Deployed results via Azure Blob Storage and ADF, powering an interactive Next.js dashboard for data-driven decision-making.",
+    period: "Sep 2025 - Dec 2025",
+    tech: [
+      "Apache Spark",
+      "Hadoop HDFS",
+      "Spark MLlib",
+      "Azure Blob Storage",
+      "Azure Data Factory",
+      "Java",
+      "Next.js",
+      "Chart.js",
+      "Big Data Analytics",
+    ],
   },
 ];
 

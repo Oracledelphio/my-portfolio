@@ -1,13 +1,40 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-// Sample images with varying aspect ratios for cursor trail
-const trailImages = [
-  "https://images.unsplash.com/photo-1731121594258-55d6a67e77df?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1693773590384-c51562c47b86?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1609583296986-ecb2a397adfd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1677022725616-91e41d36db21?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1642665358815-310df20dc8dd?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+// Programming keywords and binary codes for matrix effect
+const matrixChars = "01";
+const programmingKeywords = [
+  "const",
+  "let",
+  "var",
+  "function",
+  "class",
+  "async",
+  "await",
+  "return",
+  "import",
+  "export",
+  "interface",
+  "type",
+  "extends",
+  "implements",
+  "null",
+  "undefined",
+  "true",
+  "false",
+  "for",
+  "while",
+  "if",
+  "else",
+  "try",
+  "catch",
+  "throw",
+  "new",
+  "this",
+  "super",
+  "static",
+  "public",
+  "private",
 ];
 
 const hiddenMessage = "INNOVATION • CREATIVITY • EXCELLENCE";
@@ -16,16 +43,15 @@ export default function Hero() {
   const heroRef = useRef(null);
   const imageRef = useRef(null);
   const overlayRef = useRef(null);
-  const cursorTrailRef = useRef(null);
+  const matrixContainerRef = useRef(null);
   const messageRef = useRef(null);
 
-  const [trailElements, setTrailElements] = useState<any[]>([]);
+  const [matrixElements, setMatrixElements] = useState<any[]>([]);
   const [messageOpacity, setMessageOpacity] = useState(0);
 
   const lastMoveTime = useRef(0);
   const lastPosition = useRef({ x: 0, y: 0 });
-  const imageCounter = useRef(0);
-  const spawnCounter = useRef(0);
+  const elementCounter = useRef(0);
 
   useEffect(() => {
     // GSAP Timeline for Hero Load Animation
@@ -54,7 +80,24 @@ export default function Hero() {
   useEffect(() => {
     let rafId;
 
-    // Cursor velocity tracking + image spawning
+    // Generate random binary or keyword
+    const generateMatrixText = () => {
+      if (Math.random() > 0.4) {
+        // 60% chance of binary code
+        let binary = "";
+        for (let i = 0; i < Math.floor(Math.random() * 8) + 4; i++) {
+          binary += matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        }
+        return binary;
+      } else {
+        // 40% chance of programming keyword
+        return programmingKeywords[
+          Math.floor(Math.random() * programmingKeywords.length)
+        ];
+      }
+    };
+
+    // Cursor movement handler
     const handleMouseMove = (e) => {
       const currentTime = Date.now();
       const deltaTime = currentTime - lastMoveTime.current;
@@ -68,65 +111,45 @@ export default function Hero() {
       lastPosition.current = { x: e.clientX, y: e.clientY };
       lastMoveTime.current = currentTime;
 
-      // Velocity-based spawning - faster spawn rate
-      // Higher velocity = more frequent spawns
-      const spawnThreshold = 0.2; // Lower threshold for faster spawning
-
-      if (velocity > spawnThreshold) {
-        spawnCounter.current += velocity;
-
-        // Spawn image when counter exceeds threshold - lower threshold
-        if (spawnCounter.current > 0.8) {
-          spawnCounter.current = 0;
-          spawnImage(e.clientX, e.clientY, velocity);
+      // Spawn matrix elements on cursor movement
+      if (velocity > 0.1) {
+        for (let i = 0; i < Math.max(1, Math.floor(velocity)); i++) {
+          spawnMatrixElement(e.clientX, e.clientY);
         }
       }
 
-      // Gradually reveal hidden message based on total activity
+      // Gradually reveal hidden message
       const newOpacity = Math.min(messageOpacity + velocity * 0.002, 1);
       setMessageOpacity(newOpacity);
     };
 
-    const spawnImage = (x, y, velocity) => {
-      const id = Date.now() + Math.random();
-      const imageUrl = trailImages[imageCounter.current % trailImages.length];
-      imageCounter.current++;
+    const spawnMatrixElement = (x, y) => {
+      elementCounter.current++;
+      const id = `matrix-${Date.now()}-${elementCounter.current}`;
+      const text = generateMatrixText();
+      const duration = 2000 + Math.random() * 1500; // 2 - 3.5s
 
-      // Choose an aspect ratio to vary sizes (wider / taller / square)
-      const ratios = [4 / 3, 3 / 4, 1, 16 / 9, 9 / 16];
-      const ratio = ratios[Math.floor(Math.random() * ratios.length)];
-
-      // Base width varies with velocity (faster movement -> slightly bigger spawn)
-      const baseWidth = 60 + Math.min(100, Math.round(velocity * 80)); // 60 - 160 px
-      const width = Math.round(baseWidth + (Math.random() - 0.5) * 30);
-      const height = Math.max(30, Math.round(width / ratio));
-
-      const randomRotation = (Math.random() - 0.5) * 30; // -15 to 15 degrees
-
-      // Longer visible duration, then subtle quick fade (0.3s)
-      const visibleDuration = 1500 + Math.round(Math.random() * 800); // 1500 - 2300ms visible
-      const fadeDuration = 300; // 0.3s subtle fade-out
-      const lifetime = visibleDuration + fadeDuration;
+      const colorOptions = ["#1a1a1a", "#00C853"];
+      const randomColor =
+        colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
       const newElement = {
         id,
-        url: imageUrl,
-        x,
-        y,
-        rotation: randomRotation,
-        width,
-        height,
-        lifetime,
-        visibleDuration,
-        fadeDuration,
+        text,
+        x: x + (Math.random() - 0.5) * 80,
+        y: y + (Math.random() - 0.5) * 60,
+        duration,
+        delay: Math.random() * 150,
+        color: randomColor,
+        fontSize: 16 + Math.random() * 10,
       };
 
-      setTrailElements((prev) => [...prev, newElement]);
+      setMatrixElements((prev) => [...prev, newElement]);
 
-      // Auto-remove after animation (match lifetime)
+      // Remove after animation
       setTimeout(() => {
-        setTrailElements((prev) => prev.filter((el) => el.id !== id));
-      }, lifetime);
+        setMatrixElements((prev) => prev.filter((el) => el.id !== id));
+      }, duration + 200);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -157,37 +180,29 @@ export default function Hero() {
         />
       </div>
 
-      {/* Cursor Trail Container */}
+      {/* Matrix Code Trail Container */}
       <div
-        ref={cursorTrailRef}
+        ref={matrixContainerRef}
         className="absolute inset-0 pointer-events-none z-10 overflow-hidden"
       >
-        {trailElements.map((element) => (
+        {matrixElements.map((element) => (
           <div
             key={element.id}
-            className="absolute"
+            className="absolute font-mono font-bold"
             style={{
               left: `${element.x}px`,
               top: `${element.y}px`,
-              // expose rotation to CSS animation via custom property
-              ["--rotation" as any]: `${element.rotation}deg`,
-              ["--visible-duration" as any]: `${element.visibleDuration}ms`,
-              ["--fade-duration" as any]: `${element.fadeDuration}ms`,
-              transform: `translate(-50%, -50%) rotate(${element.rotation}deg)`,
-              animation: `trailFade ${element.lifetime}ms ease-out forwards`,
+              color: element.color,
+              fontSize: `${element.fontSize}px`,
+              textShadow: `0 0 8px ${element.color}80, 0 0 16px ${element.color}40`,
+              animation: `matrixFall ${element.duration}ms ease-in forwards`,
+              animationDelay: `${element.delay}ms`,
               willChange: "transform, opacity",
+              letterSpacing: "1px",
+              fontWeight: "600",
             }}
           >
-            <img
-              src={element.url}
-              alt=""
-              className="object-cover rounded-lg shadow-xl"
-              style={{
-                width: `${element.width}px`,
-                height: `${element.height}px`,
-                pointerEvents: "none",
-              }}
-            />
+            {element.text}
           </div>
         ))}
       </div>
@@ -215,20 +230,19 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* CSS Animation for trail fade - long visible, quick fade */}
+      {/* CSS Animation for matrix fall effect */}
       <style jsx>{`
-        @keyframes trailFade {
+        @keyframes matrixFall {
           0% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+            transform: translate(-50%, -50%) translateY(0);
           }
-          calc((var(--visible-duration) / (var(--visible-duration) + var(--fade-duration))) * 100%) {
+          70% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
           }
           100% {
             opacity: 0;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+            transform: translate(-50%, -50%) translateY(80px);
           }
         }
       `}</style>
