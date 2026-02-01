@@ -241,7 +241,6 @@ export default function About() {
                     onChange={(e) => setTerminalInput(e.target.value)}
                     className="flex-1 bg-transparent text-[#E6EDF3] outline-none border-none"
                     placeholder="type 'ls' to see tech stack..."
-                    autoFocus
                   />
                   {showPrompt && (
                     <span className="text-[#E6EDF3] animate-pulse">▊</span>

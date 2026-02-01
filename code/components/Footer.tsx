@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,7 +11,8 @@ export default function Footer() {
           <div>
             <h3 className="text-3xl font-black mb-4">KURT SONY</h3>
             <p className="text-white/70 leading-relaxed">
-              Data Scientist & AI Engineer specializing in Computer Vision and Deep Learning.
+              Data Scientist & AI Engineer specializing in Computer Vision and
+              Deep Learning.
             </p>
           </div>
 
@@ -22,25 +23,37 @@ export default function Footer() {
             </h4>
             <nav className="space-y-3">
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="block text-white/80 hover:text-[#F2A6A6] transition-colors font-semibold"
               >
                 Home
               </button>
               <button
-                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document
+                    .getElementById("about")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="block text-white/80 hover:text-[#F2A6A6] transition-colors font-semibold"
               >
                 About
               </button>
               <button
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="block text-white/80 hover:text-[#F2A6A6] transition-colors font-semibold"
               >
                 Projects
               </button>
               <button
-                onClick={() => document.getElementById('publications')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document
+                    .getElementById("publications")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="block text-white/80 hover:text-[#F2A6A6] transition-colors font-semibold"
               >
                 Publications
@@ -79,7 +92,7 @@ export default function Footer() {
                 Twitter
               </a>
               <a
-                href="mailto:contact@example.com"
+                href="mailto:ksonyrebello@gmail.com"
                 className="block text-white/80 hover:text-[#F2A6A6] transition-colors font-semibold"
               >
                 Email
@@ -93,10 +106,11 @@ export default function Footer() {
               Contact
             </h4>
             <p className="text-white/80 mb-3 font-semibold">
-              contact@example.com
+              ksonyrebello@gmail.com
             </p>
             <p className="text-white/70 text-sm leading-relaxed">
-              Available for opportunities in AI/ML, Computer Vision, and Data Science.
+              Available for opportunities in AI/ML, Computer Vision, and Data
+              Science.
             </p>
           </div>
         </div>
